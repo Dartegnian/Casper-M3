@@ -1,9 +1,34 @@
 import { Theme, argbFromHex, themeFromImage, themeFromSourceColor, applyTheme } from "@material/material-color-utilities";
 import ColorThief, { RGBColor } from 'colorthief';
+import { Component } from "react";
 
-export class AccentUtil {
-	themeMode: "light" | "dark" = "light";
+interface ThemeSwitcherState {
+	theme: Theme | null;
+	themeMode: "light" | "dark";
 	themeRawColorData: Theme | undefined;
+}
+
+export class AccentUtil extends Component<undefined, ThemeSwitcherState> {
+	constructor() {
+		super(null);
+		this.state = {
+			theme: null,
+			themeMode: "light",
+			themeRawColorData: undefined
+		};
+	}
+
+	public setThemeMode(mode: "light" | "dark") {
+		this.setState({ themeMode: mode });
+		console.warn("SETTING THEME", this.state.theme);
+		applyTheme(
+			this.state.theme,
+			{
+				target: document.body,
+				dark: this.state.themeMode === "light" ? false : true
+			}
+		);
+	}
 
 	/**
 	 * Converts ARGB color value to RGB
@@ -17,12 +42,12 @@ export class AccentUtil {
 	}
 
 	rgbToHex(rgb: RGBColor): string {
-		const [r, g, b] = rgb.map((color) => Math.round(color).toString(16).padStart(2, '0'));
+		const [r, g, b] = rgb.map((color: number) => Math.round(color).toString(16).padStart(2, '0'));
 		return `#${r}${g}${b}`;
 	}
 
 	setThemeRawColorData(theme: Theme) {
-		this.themeRawColorData = theme;
+		this.setState({ themeRawColorData: theme });
 	}
 
 	getColorFromImage(imgElement: HTMLImageElement): Promise<RGBColor> {
@@ -51,21 +76,21 @@ export class AccentUtil {
 	setMetaTagColor() {
 		const metaThemeColor = document.querySelector('meta[name="theme-color"]');
 
-		if (metaThemeColor && this.themeRawColorData?.schemes[this.themeMode].primaryContainer) {
+		if (metaThemeColor && this.state.themeRawColorData?.schemes[this.state.themeMode].primaryContainer) {
 			metaThemeColor.setAttribute('content', this.argbToRgb(
-				this.themeRawColorData?.schemes[this.themeMode].primaryContainer
+				this.state.themeRawColorData?.schemes[this.state.themeMode].primaryContainer
 			));
 		}
 	}
 
-	async setThemeFromM3(parentElement: Element | HTMLElement) {
+	async setThemeFromM3(parentElement?: Element | HTMLElement) {
 		const theme = await this.setM3ColorAndTarget(
 			null,
 			document.body,
 			parentElement
 		);
 		if (theme) {
-			this.themeRawColorData = theme;
+			this.setState({ themeRawColorData: theme });
 			this.setThemeRawColorData(theme);
 			this.setMetaTagColor();
 		}
@@ -76,11 +101,12 @@ export class AccentUtil {
 		target: string | HTMLElement,
 		elementClass: Element | HTMLElement | null
 	) {
+		console.warn("XXXXX");
 		let theme: Theme | null = null;
 		const parentElement = document.getElementById(parentOfImg);
 		const colorThief = new ColorThief();
 		const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-		this.themeMode = systemDark ? 'dark' : 'light';
+		this.setState({ themeMode: systemDark ? 'dark' : 'light' });
 
 		if (parentElement) {
 			const imgElement = parentElement.querySelector("img");
@@ -111,15 +137,17 @@ export class AccentUtil {
 			theme = themeFromSourceColor(argbFromHex("#b0b2bd"));
 		}
 
+		this.setState({ theme });
+		console.warn("asaaa", this.state.theme);
+
 		if (theme) {
 			applyTheme(
 				theme,
 				{
 					target: typeof target === "string" ? document.getElementById(target) as HTMLElement : target,
-					dark: this.themeMode === "light" ? false : true
+					dark: this.state.themeMode === "light" ? false : true
 				}
 			);
-
 		}
 
 		return theme;
