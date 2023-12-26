@@ -37,7 +37,7 @@
         "ghost",
         "theme",
         "ghost-theme",
-		"material-you"
+        "material-you"
     ],
     "repository": {
         "type": "git",
@@ -201,6 +201,8 @@
         "@types/node": "^20.6.0",
         "@types/react": "^18.2.21",
         "@types/react-dom": "^18.2.7",
-        "colorthief": "^2.4.0"
+        "colorthief": "^2.4.0",
+        "idb": "^8.0.0",
+        "rxjs": "^7.8.1"
     }
 }

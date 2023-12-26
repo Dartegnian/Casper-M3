@@ -6,6 +6,7 @@ import Post from '@components/Post';
 import Home from '@components/Home';
 
 import ThemeSwitcher from '@components/ThemeSwitcher';
+import { Idb } from '@utils/Idb';
 
 interface AppState {
 	onPage: string | null;
@@ -26,6 +27,9 @@ class App extends Component<{}, AppState> {
 			"post",
 			"author"
 		];
+
+		const idb = new Idb();
+		idb.connectToIDB();
 	}
 
 	componentDidMount(): void {
@@ -55,6 +59,7 @@ class App extends Component<{}, AppState> {
 		return (
 			<div className="app">
 				{this.renderDynamicComponent()}
+				<ThemeSwitcher></ThemeSwitcher>
 			</div>
 		);
 	}
