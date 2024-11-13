@@ -162,6 +162,8 @@ ul {
 		align-items: center;
 
 		.post-card-content-link {
+			display: flex;
+			flex-direction: column;
 			padding-left: 0px;
 		}
 	}
