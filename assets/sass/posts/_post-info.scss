@@ -32,8 +32,10 @@
     .article-byline-meta .author-name {
         margin-bottom: 0.75rem;
     }
+    .article-byline-content {
+        flex-direction: row;
+    }
 }
-
 
 .byline-meta-content {
 	display: inline-flex;
