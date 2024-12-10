@@ -2,7 +2,7 @@
     "name": "casper-m3",
     "description": "A modified Casper theme with Material You styling. Integrated with React components and TypeScript.",
     "demo": "https://blog.dartegnian.com",
-    "version": "5.7.5",
+    "version": "5.8.1",
     "engines": {
         "ghost": ">=5.0.0"
     },
