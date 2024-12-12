@@ -21,7 +21,7 @@ into the {body} tag of the default.hbs template --}}
             {{/primary_tag}}
             {{#if featured}}
                 <span class="post-card-featured">
-                	<span class="material-symbols-rounded">local_fire_department</span> Featured
+                	<span class="material-symbols-rounded" hidden aria-hidden="true">local_fire_department</span> Featured
                 </span>
             {{/if}}
         </div>
@@ -52,10 +52,10 @@ into the {body} tag of the default.hbs template --}}
             <div class="article-byline-meta">
                 <h4 class="author-name">{{authors}}</h4>
                 <div class="byline-meta-content">
-                    <time class="byline-meta-date" datetime="{{date format="YYYY-MM-DD"}}"><span class="post-card-meta-date__icon material-symbols-rounded">calendar_today</span>{{date format="DD MMM YYYY"}}</time>
+                    <time class="byline-meta-date" datetime="{{date format="YYYY-MM-DD"}}"><span class="post-card-meta-date__icon material-symbols-rounded" hidden aria-hidden="true">calendar_today</span>{{date format="DD MMM YYYY"}}</time>
                     {{#if reading_time}}
                         <span class="byline-reading-time">
-							<span class="post-card-meta-length__icon material-symbols-rounded">schedule</span>
+							<span class="post-card-meta-length__icon material-symbols-rounded" hidden aria-hidden="true">schedule</span>
 							{{reading_time}}
 						</span>
                     {{/if}}
