@@ -41,7 +41,7 @@ body {
 	background-color: #{var(--md-sys-color-background)};
 }
 
-h1, h2, h3, h4, h5, h6, body {
+h1, h2, h3, h4, h5, h6, .gh-head-logo, body {
 	font-family: "Poppins", $system-fallback-fonts;
 }
 
