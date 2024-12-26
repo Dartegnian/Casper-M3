@@ -34,7 +34,12 @@
 
 </head>
 <body class="{{body_class}} is-head-{{#match @custom.navigation_layout "Logo on cover"}}left-logo{{else match @custom.navigation_layout "Logo in the middle"}}middle-logo{{else}}stacked{{/match}}{{#match @custom.title_font "=" "Elegant serif"}} has-serif-title{{/match}}{{#match @custom.body_font "=" "Modern sans-serif"}} has-sans-body{{/match}}{{#if @custom.show_publication_cover}} has-cover{{/if}} material-theme">
-<div id="react-root"></div>
+<div id="react-root"
+    data-title="{{post.title}}" 
+    data-author="{{post.primary_author.name}}" 
+    data-published="{{post.published_at}}" 
+    data-content="{{{post.html}}}"
+></div>
 <div class="viewport">
 
     <header id="gh-head" class="gh-head outer{{#match @custom.header_style "Hidden"}} is-header-hidden{{/match}}">
