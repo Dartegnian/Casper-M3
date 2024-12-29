@@ -34,13 +34,14 @@
     }
 
     .article-byline-content {
-		flex-direction: column;
+        flex-direction: column;
     }
 }
 
 .byline-meta-content {
-	display: inline-flex;
-	gap: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .byline-meta-date,
