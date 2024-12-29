@@ -4,9 +4,6 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 interface PostState {
 	title: string;
-	author: string;
-	published: string;
-	content: string;
 	isDataLoaded: boolean; // Track whether data has been loaded;
 	copyLinkText: string;
 	canWebShare: boolean;
@@ -19,9 +16,6 @@ class Post extends Component<{}, PostState> {
 		super(props);
 		this.state = {
 			title: '',
-			author: '',
-			published: '',
-			content: '',
 			isDataLoaded: false,
 			copyLinkText: 'Copy link',
 			canWebShare: false
@@ -34,9 +28,6 @@ class Post extends Component<{}, PostState> {
 		const rootElement = document.querySelector('#react-root');
 		if (rootElement) {
 			const title = rootElement.getAttribute('data-title') || '';
-			const author = rootElement.getAttribute('data-author') || '';
-			const published = rootElement.getAttribute('data-published') || '';
-			const content = rootElement.getAttribute('data-content') || '';
 			const canWebShare = typeof navigator?.canShare === 'function' &&
 				navigator.canShare({
 					title: "Everything but the Kitchen Sink - A Meaningful Struggle",
@@ -49,9 +40,6 @@ class Post extends Component<{}, PostState> {
 			// Update state with extracted data
 			this.setState({
 				title,
-				author,
-				published,
-				content,
 				isDataLoaded: true, // Mark as loaded
 				canWebShare
 			}, this.mountByline); // Callback after state is updated
