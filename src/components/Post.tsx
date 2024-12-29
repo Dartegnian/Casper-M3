@@ -66,18 +66,6 @@ class Post extends Component<{}, PostState> {
 
 	// Function to render the article byline
 	renderByline(): ReactElement<any, any> {
-		const { author, published } = this.state;
-		const currentUrl = window.location.href;
-
-		// Safely format the date
-		let formattedDate = 'Invalid Date';
-		if (published) {
-			const date = new Date(published);
-			if (!isNaN(date.getTime())) {
-				formattedDate = date.toLocaleDateString();
-			}
-		}
-
 		if (this.state.canWebShare) {
 			return (
 				<button
