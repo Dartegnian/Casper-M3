@@ -80,11 +80,12 @@ class Post extends Component<{}, PostState> {
 
 		if (this.state.canWebShare) {
 			return (
-				<Fragment>
-					ASAAA{currentUrl}
-					<p>By {author}</p>
-					<p>Published on {formattedDate}</p>
-				</Fragment>
+				<button
+					className="react-byline-element"
+					onClick={() => { this.webSharePost() }}
+				>
+					<span className="material-symbols-rounded">share</span> Share post
+				</button>
 			);
 		} else {
 			return (
@@ -134,7 +135,7 @@ class Post extends Component<{}, PostState> {
 			});
 	};
 
-	async webShareEntry(): Promise<void> {
+	webSharePost = async (): Promise<void> => {
 		const url = window.location.href;
 		const title = this.state.title + " - A Meaningful Struggle";
 
