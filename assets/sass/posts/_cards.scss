@@ -49,3 +49,9 @@ p:has(+.kg-card), p:has(+[id]), p:has(+hr) {
 	background: initial;
 	color: initial;
 }
+
+.post-card-tags {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
