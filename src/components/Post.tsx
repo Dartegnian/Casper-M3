@@ -13,6 +13,8 @@ interface PostState {
 }
 
 class Post extends Component<{}, PostState> {
+	private bylineRoot: any;
+
 	constructor(props: {}) {
 		super(props);
 		this.state = {
@@ -24,6 +26,7 @@ class Post extends Component<{}, PostState> {
 			copyLinkText: 'Copy link',
 			canWebShare: false
 		};
+		this.bylineRoot = null; // Initialize root reference
 	}
 
 	async componentDidMount(): Promise<void> {
@@ -41,7 +44,7 @@ class Post extends Component<{}, PostState> {
 					url: "https://blog.dartegnian.com/everything-but-the-kitchen-sink/",
 				});
 
-			console.log('Extracted Data:', { title, author, published, content });
+			// console.log('Extracted Data:', { title, author, published, content });
 
 			// Update state with extracted data
 			this.setState({
@@ -52,6 +55,12 @@ class Post extends Component<{}, PostState> {
 				isDataLoaded: true, // Mark as loaded
 				canWebShare
 			}, this.mountByline); // Callback after state is updated
+		}
+	}
+
+	componentDidUpdate(prevProps: any, prevState: any): void {
+		if (this.bylineRoot) {
+			this.bylineRoot.render(this.renderByline());
 		}
 	}
 
@@ -95,17 +104,16 @@ class Post extends Component<{}, PostState> {
 	mountByline = (): void => {
 		if (this.state.isDataLoaded) {
 			const bylineTarget = document.querySelector('.byline-meta-content');
-			if (bylineTarget && !bylineTarget.querySelector('.react-byline-container')) {
-				// Create a container div for the byline
+			if (bylineTarget && !this.bylineRoot) {
 				const bylineContainer = document.createElement('div');
 				bylineContainer.className = 'react-byline-container';
-
-				// Append the container as a child of the byline target
 				bylineTarget.appendChild(bylineContainer);
 
-				// Create a root and render the React element
-				const root = createRoot(bylineContainer);
-				root.render(this.renderByline());
+				// Store the root instance
+				this.bylineRoot = createRoot(bylineContainer);
+
+				// Initial render
+				this.bylineRoot.render(this.renderByline());
 			}
 		}
 	};
@@ -115,19 +123,13 @@ class Post extends Component<{}, PostState> {
 
 		navigator.clipboard.writeText(currentUrl)
 			.then(() => {
-				console.log('Link copied to clipboard!');
-				this.setState({ copyLinkText: "Link copied!" }, () => {
-					console.log('Updated copyLinkText:', this.state.copyLinkText);
-				});
-
+				this.setState({ copyLinkText: "Link copied!" });
 				setTimeout(() => {
-					this.setState({ copyLinkText: "Copy link" }, () => {
-						console.log('Reset copyLinkText:', this.state.copyLinkText);
-					});
+					this.setState({ copyLinkText: "Copy link" });
 				}, 2000);
 			})
 			.catch(err => {
-				console.error('Failed to copy link: ', err);
+				console.error('Failed to copy link:', err);
 				this.setState({ copyLinkText: "Copy failed!" });
 			});
 	};
