@@ -27,6 +27,8 @@
 	
 	& > .material-symbols-rounded {
 		margin-right: $icon-margin-right;
+		pointer-events: none;
+		user-select: none;
 	}
 }
 

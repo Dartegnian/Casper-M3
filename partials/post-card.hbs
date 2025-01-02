@@ -45,7 +45,7 @@ which templates loop over to generate a list of posts. --}}
                     {{/primary_tag}}
                     {{#if featured}}
 						<span class="post-card-featured">
-							<span class="material-symbols-rounded">local_fire_department</span> Featured
+							<span class="material-symbols-rounded" aria-hidden="true" role="presentation">local_fire_department</span> Featured
 						</span>
                     {{/if}}
                 </div>
@@ -66,7 +66,7 @@ which templates loop over to generate a list of posts. --}}
         </a>
 
         <footer class="post-card-meta">
-            <time class="post-card-meta-date" datetime="{{date format="YYYY-MM-DD"}}"><span class="post-card-meta-date__icon material-symbols-rounded">calendar_today</span>{{date}}</time>
+            <time class="post-card-meta-date" datetime="{{date format="YYYY-MM-DD"}}"><span class="post-card-meta-date__icon material-symbols-rounded" aria-hidden="true" role="presentation">calendar_today</span>{{date format="DD MMM YYYY"}}</time>
             {{#if reading_time}}
                 <span class="post-card-meta-length">
                 <span class="post-card-meta-length__icon material-symbols-rounded">schedule</span>{{reading_time}}</span>

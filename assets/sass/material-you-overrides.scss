@@ -36,10 +36,13 @@
 }
 
 body {
-	font-family: "Poppins", $system-fallback-fonts;
 	margin: 0;
 	min-height: 100vh;
 	background-color: #{var(--md-sys-color-background)};
+}
+
+h1, h2, h3, h4, h5, h6, .gh-head-logo, body {
+	font-family: "Poppins", $system-fallback-fonts;
 }
 
 ul {
@@ -162,6 +165,8 @@ ul {
 		align-items: center;
 
 		.post-card-content-link {
+			display: flex;
+			flex-direction: column;
 			padding-left: 0px;
 		}
 	}

@@ -2,7 +2,7 @@
     "name": "casper-m3",
     "description": "A modified Casper theme with Material You styling. Integrated with React components and TypeScript.",
     "demo": "https://blog.dartegnian.com",
-    "version": "5.7.4",
+    "version": "5.8.1",
     "engines": {
         "ghost": ">=5.0.0"
     },
@@ -89,7 +89,7 @@
         "defaults"
     ],
     "config": {
-        "posts_per_page": 25,
+        "posts_per_page": 24,
         "image_sizes": {
             "xxs": {
                 "width": 30
@@ -202,5 +202,6 @@
     "dependencies": {
         "@material/material-color-utilities": "^0.3.0",
         "idb": "^8.0.0"
-    }
+    },
+    "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }

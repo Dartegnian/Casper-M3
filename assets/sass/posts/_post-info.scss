@@ -1,5 +1,9 @@
-.author-avatar, .author-profile-pic-container {
-	padding: 5px;
+.author-avatar {
+	padding: 6px;
+}
+
+.author-profile-pic-container {
+	padding: 8px;
 }
 
 .author-avatar, .author-profile-image {
@@ -28,12 +32,16 @@
     .article-byline-meta .author-name {
         margin-bottom: 0.75rem;
     }
+
+    .article-byline-content {
+        flex-direction: column;
+    }
 }
 
-
 .byline-meta-content {
-	display: inline-flex;
-	gap: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .byline-meta-date,
