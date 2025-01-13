@@ -60,9 +60,10 @@ export class AccentUtil {
 		this.themeMode = mode;
 		const articleImage = document.querySelector('.article-image');
 		let authorPageElement = document.getElementById("react-author");
+		let tagPageElement = document.getElementById("react-tag");
 		let authorHeaderImage;
 
-		if (authorPageElement) {
+		if (authorPageElement || tagPageElement) {
 			authorHeaderImage = document.querySelector('.post-card-image-link');
 		}
 
