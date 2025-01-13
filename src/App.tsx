@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import '@sass/components/App.scss';
 
-import Author from '@components/Author';
-import Post from '@components/Post';
-import Home from '@components/Home';
+import Author from '@pages/Author';
+import Post from '@pages/Post';
+import Home from '@pages/Home';
 
 import ThemeSwitcher from '@components/ThemeSwitcher';
 
@@ -45,6 +45,8 @@ class App extends Component<{}, AppState> {
 			case 'post':
 				return <Post />;
 			case 'author':
+				return <Author />
+			case 'tag':
 				return <Author />
 			default:
 				return null;
