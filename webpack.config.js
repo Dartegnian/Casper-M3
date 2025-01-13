@@ -8,6 +8,7 @@ module.exports = {
 	resolve: {
 		alias: {
 			'@components': path.resolve(__dirname, 'src/components'),
+			'@pages': path.resolve(__dirname, 'src/pages'),
 			'@sass': path.resolve(__dirname, 'assets/sass'),
 			'@utils': path.resolve(__dirname, 'src/utils'),
 		},
