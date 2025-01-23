@@ -4,7 +4,7 @@
  * Infinite Scroll
  * Used on all pages where there is a list of posts (homepage, tag index, etc).
  *
- * When the page is scrolled to 300px from the bottom, the next page of posts
+ * When the page is scrolled to 480px from the bottom, the next page of posts
  * is fetched by following the the <link rel="next" href="..."> that is output
  * by {{ghost_head}}.
  *
@@ -28,7 +28,7 @@
         return;
     }
 
-    var buffer = 300;
+    var buffer = 480;
 
     var ticking = false;
     var loading = false;
