@@ -42,7 +42,7 @@ class ThemeSwitcher extends Component<ThemeSwitcherProps, ThemeSwitcherState> {
 	};
 
 	async readSetThemeFromIdb() {
-		const preferredColorScheme = await this.state.idb.getData("Material You", "preferredColorScheme")
+		const preferredColorScheme = await this.state.idb.getData("Material You", "preferredColorScheme");
 
 		if (preferredColorScheme) {
 			this.setThemeMode(preferredColorScheme);
@@ -78,8 +78,8 @@ class ThemeSwitcher extends Component<ThemeSwitcherProps, ThemeSwitcherState> {
 		return (
 			<button
 				onClick={this.toggleThemeMode}
-				className="theme-switcher" 
-				style={ top ? { top } : undefined }
+				className="theme-switcher"
+				style={top ? { top } : undefined}
 			>
 				<span className="material-symbols-rounded theme-switcher__toggle-icon">
 					{this.state.themeMode === 'light' ? 'dark_mode' : 'light_mode'}
