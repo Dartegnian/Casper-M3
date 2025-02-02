@@ -48,13 +48,8 @@ class ThemeSwitcher extends Component<ThemeSwitcherProps, ThemeSwitcherState> {
 			this.setThemeMode(preferredColorScheme);
 			this.setState({ themeMode: preferredColorScheme });
 		} else {
-			if (this.state.isDarkMode) {
-				this.setThemeMode("dark");
-				this.setState({ themeMode: "dark" });
-			} else {
-				this.setThemeMode("light");
-				this.setState({ themeMode: "light" });
-			}
+			this.setThemeMode(this.state.isDarkMode ? "dark" : "light");
+			this.setState({ themeMode: this.state.isDarkMode ? "dark" : "light" });
 		}
 	}
 
@@ -67,36 +62,19 @@ class ThemeSwitcher extends Component<ThemeSwitcherProps, ThemeSwitcherState> {
 	};
 
 	setThemeMode(mode: "light" | "dark") {
-		switch (mode) {
-			case "light":
-				document.body.classList.toggle("dark-theme", false);
-				document.body.classList.toggle("light-theme", true);
-				break;
-			case "dark":
-				document.body.classList.toggle("dark-theme", true);
-				document.body.classList.toggle("light-theme", false);
-				break;
-			default:
-				console.error("Invalid theme");
-		}
-
 		const accentUtil = new AccentUtil();
+		const isDark = mode === "dark";
+
+		document.body.classList.toggle("dark-theme", isDark);
+		document.body.classList.toggle("light-theme", !isDark);
+
 		accentUtil.setThemeMode(mode);
+
+		this.setState({ themeMode: isDark ? "dark" : "light" });
 
 		this.state.idb.writeToTheme("Material You", {
 			preferredColorScheme: mode,
 		});
-
-		switch (mode) {
-			case "light":
-				this.setState({ themeMode: "light" });
-				break;
-			case "dark":
-				this.setState({ themeMode: "dark" });
-				break;
-			default:
-				console.error("Invalid theme");
-		}
 	}
 
 	render() {

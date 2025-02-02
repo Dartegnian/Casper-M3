@@ -2,7 +2,7 @@
     "name": "casper-m3",
     "description": "A modified Casper theme with Material You styling. Integrated with React components and TypeScript.",
     "demo": "https://blog.dartegnian.com",
-    "version": "5.8.1",
+    "version": "5.8.2",
     "engines": {
         "ghost": ">=5.0.0"
     },
@@ -22,9 +22,9 @@
         "postship": "git fetch && gulp release"
     },
     "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org/"
+        "name": "Dartegnian Velarde",
+        "email": "contact@dartegnian.com",
+        "url": "https://dartegnian.com/"
     },
     "gpm": {
         "type": "theme",
@@ -37,14 +37,15 @@
         "ghost",
         "theme",
         "ghost-theme",
+        "material-design",
         "material-you"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/TryGhost/Casper.git"
+        "url": "https://github.com/Dartegnian/Casper-M3.git"
     },
-    "bugs": "https://github.com/TryGhost/Casper/issues",
-    "contributors": "https://github.com/TryGhost/Casper/graphs/contributors",
+    "bugs": "https://github.com/Dartegnian/Casper-M3/issues",
+    "contributors": "https://github.com/Dartegnian/Casper-M3/graphs/contributors",
     "devDependencies": {
         "@babel/core": "^7.24.9",
         "@babel/preset-env": "^7.24.8",
