@@ -8,19 +8,19 @@ interface ThemeSwitcherProps { }
 
 interface ThemeSwitcherState {
 	themeMode: 'light' | 'dark';
-	isDarkMode: boolean;
 	idb: Idb;
 	top: string | null;
+	accentUtil: AccentUtil;
 }
 
 class ThemeSwitcher extends Component<ThemeSwitcherProps, ThemeSwitcherState> {
 	constructor(props: ThemeSwitcherProps) {
 		super(props);
 		this.state = {
-			themeMode: 'light',
-			isDarkMode: window.matchMedia("(prefers-color-scheme: dark)").matches,
+			themeMode: window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : "light",
 			idb: new Idb(),
-			top: null
+			top: null,
+			accentUtil: new AccentUtil()
 		};
 
 		this.state.idb.connectToIDB();
@@ -47,9 +47,6 @@ class ThemeSwitcher extends Component<ThemeSwitcherProps, ThemeSwitcherState> {
 		if (preferredColorScheme) {
 			this.setThemeMode(preferredColorScheme);
 			this.setState({ themeMode: preferredColorScheme });
-		} else {
-			this.setThemeMode(this.state.isDarkMode ? "dark" : "light");
-			this.setState({ themeMode: this.state.isDarkMode ? "dark" : "light" });
 		}
 	}
 
@@ -62,13 +59,12 @@ class ThemeSwitcher extends Component<ThemeSwitcherProps, ThemeSwitcherState> {
 	};
 
 	setThemeMode(mode: "light" | "dark") {
-		const accentUtil = new AccentUtil();
 		const isDark = mode === "dark";
 
 		document.body.classList.toggle("dark-theme", isDark);
 		document.body.classList.toggle("light-theme", !isDark);
 
-		accentUtil.setThemeMode(mode);
+		this.state.accentUtil.setThemeMode(mode);
 
 		this.setState({ themeMode: isDark ? "dark" : "light" });
 
