@@ -210,22 +210,22 @@ export class AccentUtil {
 		target: string | HTMLElement,
 		elementClass: Element | HTMLElement | null
 	) {
-		console.time('setM3ColorAndTarget');
+		// console.time('setM3ColorAndTarget');
 	
 		let theme: Theme | null = null;
 		const parentElement = document.getElementById(parentOfImg);
 	
-		console.time('parentElementCheck');
+		// console.time('parentElementCheck');
 		if (parentElement) {
-			console.timeEnd('parentElementCheck');
+			// console.timeEnd('parentElementCheck');
 	
-			console.time('imgElementCheck');
+			// console.time('imgElementCheck');
 			const imgElement = parentElement.querySelector("img");
 			let color = "";
 	
 			if (imgElement) {
 				imgElement.crossOrigin = "anonymous";
-				console.timeEnd('imgElementCheck');
+				// console.timeEnd('imgElementCheck');
 	
 				// Wait for the image to fully load
 				await new Promise<void>((resolve, reject) => {
@@ -237,27 +237,27 @@ export class AccentUtil {
 					}
 				});
 	
-				console.time('themeFromImage');
+				// console.time('themeFromImage');
 				theme = await this.getThemeFromImageCached(imgElement as HTMLImageElement);
-				console.timeEnd('themeFromImage');
+				// console.timeEnd('themeFromImage');
 			} else {
-				console.timeEnd('imgElementCheck');
+				// console.timeEnd('imgElementCheck');
 				console.error("No <img> element found within the parent element.");
 				theme = themeFromSourceColor(argbFromHex("#b0b2bd"));
 			}
 		} else if (elementClass && elementClass !== null) {
-			console.timeEnd('parentElementCheck');
+			// console.timeEnd('parentElementCheck');
 	
-			console.time('elementClassCheck');
+			// console.time('elementClassCheck');
 			const imgElement = elementClass.querySelector("img");
 			let color = "";
 	
 			if (imgElement) {
-				console.timeEnd('elementClassCheck');
+				// console.timeEnd('elementClassCheck');
 	
-				console.time('imgElementCrossOrigin');
+				// console.time('imgElementCrossOrigin');
 				imgElement.crossOrigin = "anonymous";
-				console.timeEnd('imgElementCrossOrigin');
+				// console.timeEnd('imgElementCrossOrigin');
 	
 				// Wait for the image to fully load
 				await new Promise<void>((resolve, reject) => {
@@ -269,22 +269,22 @@ export class AccentUtil {
 					}
 				});
 	
-				console.time('themeFromImage');
+				// console.time('themeFromImage');
 				theme = await this.getThemeFromImageCached(imgElement as HTMLImageElement);
-				console.timeEnd('themeFromImage');
+				// console.timeEnd('themeFromImage');
 			} else {
-				console.timeEnd('elementClassCheck');
+				// console.timeEnd('elementClassCheck');
 				console.error("No <img> element found within the parent element.");
 				theme = themeFromSourceColor(argbFromHex("#b0b2bd"));
 			}
 		} else {
-			console.timeEnd('parentElementCheck');
+			// console.timeEnd('parentElementCheck');
 			console.error("Parent element with ID '" + parentOfImg + "' not found.");
 			theme = themeFromSourceColor(argbFromHex("#b0b2bd"));
 		}
 	
 		if (theme) {
-			console.time('applyTheme');
+			// console.time('applyTheme');
 			applyTheme(
 				theme,
 				{
@@ -292,10 +292,10 @@ export class AccentUtil {
 					dark: this.themeMode === "light" ? false : true
 				}
 			);
-			console.timeEnd('applyTheme');
+			// console.timeEnd('applyTheme');
 		}
 	
-		console.timeEnd('setM3ColorAndTarget');
+		// console.timeEnd('setM3ColorAndTarget');
 	
 		return theme;
 	}
