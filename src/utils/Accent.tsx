@@ -111,27 +111,27 @@ export class AccentUtil {
 	 */
 	private createDownscaledImage(imgElement: HTMLImageElement, targetWidth: number = 50): Promise<HTMLImageElement> {
 		return new Promise((resolve, reject) => {
-		// Calculate the new dimensions
-		const scale = targetWidth / imgElement.naturalWidth;
-		const targetHeight = Math.round(imgElement.naturalHeight * scale);
-	
-		// Create a canvas and draw the image scaled down
-		const canvas = document.createElement('canvas');
-		canvas.width = targetWidth;
-		canvas.height = targetHeight;
-		const ctx = canvas.getContext('2d');
-		if (!ctx) {
-			return reject(new Error("Could not get canvas context."));
-		}
-		ctx.drawImage(imgElement, 0, 0, targetWidth, targetHeight);
-	
-		// Create a new image element from the canvas data
-		const dataUrl = canvas.toDataURL();
-		const downscaledImg = new Image();
-		downscaledImg.crossOrigin = "anonymous";
-		downscaledImg.onload = () => resolve(downscaledImg);
-		downscaledImg.onerror = reject;
-		downscaledImg.src = dataUrl;
+			// Calculate the new dimensions
+			const scale = targetWidth / imgElement.naturalWidth;
+			const targetHeight = Math.round(imgElement.naturalHeight * scale);
+
+			// Create a canvas and draw the image scaled down
+			const canvas = document.createElement('canvas');
+			canvas.width = targetWidth;
+			canvas.height = targetHeight;
+			const ctx = canvas.getContext('2d');
+			if (!ctx) {
+				return reject(new Error("Could not get canvas context."));
+			}
+			ctx.drawImage(imgElement, 0, 0, targetWidth, targetHeight);
+
+			// Create a new image element from the canvas data
+			const dataUrl = canvas.toDataURL();
+			const downscaledImg = new Image();
+			downscaledImg.crossOrigin = "anonymous";
+			downscaledImg.onload = () => resolve(downscaledImg);
+			downscaledImg.onerror = reject;
+			downscaledImg.src = dataUrl;
 		});
 	}
 
@@ -211,22 +211,22 @@ export class AccentUtil {
 		elementClass: Element | HTMLElement | null
 	) {
 		// console.time('setM3ColorAndTarget');
-	
+
 		let theme: Theme | null = null;
 		const parentElement = document.getElementById(parentOfImg);
-	
+
 		// console.time('parentElementCheck');
 		if (parentElement) {
 			// console.timeEnd('parentElementCheck');
-	
+
 			// console.time('imgElementCheck');
 			const imgElement = parentElement.querySelector("img");
 			let color = "";
-	
+
 			if (imgElement) {
 				imgElement.crossOrigin = "anonymous";
 				// console.timeEnd('imgElementCheck');
-	
+
 				// Wait for the image to fully load
 				await new Promise<void>((resolve, reject) => {
 					if (imgElement.complete) {
@@ -236,7 +236,7 @@ export class AccentUtil {
 						imgElement.onerror = () => reject(new Error('Image failed to load'));
 					}
 				});
-	
+
 				// console.time('themeFromImage');
 				theme = await this.getThemeFromImageCached(imgElement as HTMLImageElement);
 				// console.timeEnd('themeFromImage');
@@ -247,18 +247,18 @@ export class AccentUtil {
 			}
 		} else if (elementClass && elementClass !== null) {
 			// console.timeEnd('parentElementCheck');
-	
+
 			// console.time('elementClassCheck');
 			const imgElement = elementClass.querySelector("img");
 			let color = "";
-	
+
 			if (imgElement) {
 				// console.timeEnd('elementClassCheck');
-	
+
 				// console.time('imgElementCrossOrigin');
 				imgElement.crossOrigin = "anonymous";
 				// console.timeEnd('imgElementCrossOrigin');
-	
+
 				// Wait for the image to fully load
 				await new Promise<void>((resolve, reject) => {
 					if (imgElement.complete) {
@@ -268,7 +268,7 @@ export class AccentUtil {
 						imgElement.onerror = () => reject(new Error('Image failed to load'));
 					}
 				});
-	
+
 				// console.time('themeFromImage');
 				theme = await this.getThemeFromImageCached(imgElement as HTMLImageElement);
 				// console.timeEnd('themeFromImage');
@@ -282,7 +282,7 @@ export class AccentUtil {
 			console.error("Parent element with ID '" + parentOfImg + "' not found.");
 			theme = themeFromSourceColor(argbFromHex("#b0b2bd"));
 		}
-	
+
 		if (theme) {
 			// console.time('applyTheme');
 			applyTheme(
@@ -294,10 +294,9 @@ export class AccentUtil {
 			);
 			// console.timeEnd('applyTheme');
 		}
-	
+
 		// console.timeEnd('setM3ColorAndTarget');
-	
 		return theme;
 	}
-	
+
 }
