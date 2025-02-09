@@ -3,7 +3,14 @@
     margin-bottom: 6vmin;
 }
 
-.gh-content .kg-card+:not(.kg-card) {
+// 1. By default, if a <p> comes right after a .kg-card, give it full border rounding.
+.gh-content .kg-card + p {
+	border-radius: $container-border-radius;
+}
+
+// 2. But if that <p> has another <p> immediately following it,
+// override it so that only the top corners are rounded.
+.gh-content .kg-card + p:has(+ p) {
 	border-radius: $container-border-radius $container-border-radius 0 0;
 }
 

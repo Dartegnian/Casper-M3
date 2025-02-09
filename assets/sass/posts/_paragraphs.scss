@@ -1,10 +1,19 @@
 .gh-content>p {
+	&:only-of-type {
+		border-radius: $container-border-radius;
+	}
+
 	&:first-of-type {
 		border-radius: $container-border-radius $container-border-radius 0px 0px;
 	}
 
 	&:last-of-type {
-		border-radius: 0px 0px $container-border-radius $container-border-radius;
+		// By default, round all corners for the last <p>
+		border-radius: $container-border-radius;
+	}
+
+	&+p:last-of-type {
+		border-radius: 0 0 $container-border-radius $container-border-radius;
 	}
 
 	&:only-of-type {
