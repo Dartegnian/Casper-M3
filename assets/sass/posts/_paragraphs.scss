@@ -1,4 +1,4 @@
-.gh-content > p {
+.gh-content>p {
 	&:first-of-type {
 		border-radius: $container-border-radius $container-border-radius 0px 0px;
 	}
@@ -16,6 +16,12 @@
 	}
 }
 
-.gh-content.gh-canvas > blockquote:first-child {
+.gh-content {
+	figure+p:has(+ figure) {
+		border-radius: $container-border-radius;
+	}
+}
+
+.gh-content.gh-canvas>blockquote:first-child {
 	border-radius: $container-border-radius;
 }
