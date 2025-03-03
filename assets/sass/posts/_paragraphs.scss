@@ -12,7 +12,11 @@
 		border-radius: $container-border-radius;
 	}
 
-	&+p:last-of-type, &+ul+p:last-of-type, &+blockquote+p:last-of-type {
+	&+p:last-of-type,
+	&+h2+p:last-of-type,
+	&+h3+p:last-of-type,
+	&+ul+p:last-of-type,
+	&+blockquote+p:last-of-type {
 		border-radius: 0 0 $container-border-radius $container-border-radius;
 	}
 
