@@ -6,3 +6,15 @@
 		}
 	  }
 }
+
+.gh-content {
+	> figure {
+	  margin-bottom: 2em;
+	}
+}
+
+.gh-content {
+	figcaption strong {
+		color: inherit;
+	}
+}

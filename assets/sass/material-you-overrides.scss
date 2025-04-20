@@ -98,15 +98,15 @@ ul {
 	color: var(--md-sys-color-on-primary-container);
 }
 
-.site-footer .copyright a {
-	@include material-inverted--primary;
-	border-radius: 16px;
-	padding: 8px;
-	display: inline-flex;
-	align-items: center;
-	font-weight: bold;
-    letter-spacing: normal;
-}
+// .site-footer .copyright a {
+// 	@include material-inverted--primary;
+// 	border-radius: 16px;
+// 	padding: 8px;
+// 	display: inline-flex;
+// 	align-items: center;
+// 	font-weight: bold;
+//     letter-spacing: normal;
+// }
 
 .site-footer .inner {
 	display: flex;
